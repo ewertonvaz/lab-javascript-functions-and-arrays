@@ -77,16 +77,37 @@ function sum(array) {
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(array) {
+  if (array.length === 0) {
+    return null;
+  }
+  if (array.length === 1){
+    return array[0];
+  }
+  return sumNumbers(array) / array.length;
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(array) { 
+  if (array.length === 0) {
+    return null;
+  }
+  if (array.length === 1){
+    return array[0].length;
+  }
+  return sum(array) / array.length;
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(array) {
+  if (array.length === 0) {
+    return null;
+  }
+  return sum(array) / array.length;
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -103,14 +124,38 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(array) {
+  if (array.length === 0) {
+    return null;
+  }
+  let newArray = [];
+  for (let i = 0; i < array.length; i++){
+    if (!newArray.includes(array[i])){
+      newArray.push(array[i]);
+    }
+  }
+  return newArray;
+}
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(array, word) {
+  if (array.length === 0) {
+    return null;
+  }
+  if (array.length === 1 && array[0] === word) {
+    return true;
+  }
+  for (let i = 0; i < array.length; i++){
+    if (array[i] === word) {
+      return true;
+    }
+  }
+  return false;
+}
 
 
 
@@ -129,7 +174,18 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(array, word) {
+  if (array.length === 0) {
+    return 0;
+  }
+  let count = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === word) {
+      count++;
+    }
+  }
+  return count;
+}
 
 
 
@@ -157,8 +213,45 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
-
+function greatestProduct(matrix) {
+  let adjacents = 4, xLimit = matrix[0].length, yLimit, line = "", product = 0, productAdj = 1;
+  //Percorre a matriz na horizontal
+  for (let i = 0; i < xLimit; i++){
+      yLimit = matrix[i].length;
+      for (let j = 0; j + adjacents <= yLimit; j++) {
+          line = "";
+          productAdj = 1;
+          for (let k = 0; k < adjacents; k++){
+              line += `${matrix[i][k+j]}|`;
+              productAdj *= matrix[i][k+j];
+          }
+          if (productAdj > product) {
+            product = productAdj;
+          }
+          // console.log(line);
+          console.log(productAdj);
+      }
+  }
+  // console.log("===================");
+  //Percorre a matriz na vertical
+  yLimit = matrix[1].length
+  for (let i = 0; i < yLimit; i++){
+      xLimit = matrix[i].length;
+      for (let j = 0; j + adjacents <= yLimit; j++) {
+          line = "";
+          productAdj = 1;
+          for (let k = 0; k < adjacents; k++){
+              line += `${matrix[k+j][i]}|`;
+              productAdj *= matrix[k+j][i];
+          }
+          //console.log(line);
+      }
+      if (productAdj > product) {
+        product = productAdj;
+      }
+  }
+  return product;
+}
 
 
 
