@@ -1,24 +1,75 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
+function maxOfTwoNumbers(num1, num2) {
+  if (num1 > num2) {
+    return num1;
+  }
+  if (num2 > num1) {
+    return num2;
+  }
+  return num1;
+}
 
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(words) {
+  if (words.length === 0) {
+    return null;
+  }
+  let longest = "";
+  for (let i = 0; i < words.length; i++){
+    if (words[i].length > longest.length) {
+      longest = words[i];
+    }
+  }
+  return longest;
+}
 
 
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+function sumNumbers(array) {
+  if (array.length === 0) {
+    return 0;
+  }
+  let sum = 0;
+  for (let i = 0; i < array.length; i++){
+    sum += array[i];
+  }
+  return sum;
+}
 
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(array) {
+  if (array.length === 0) {
+    return 0;
+  }
+  let sum = 0;
+  for (let i = 0; i < array.length; i++){
+    switch (typeof array[i]){
+      case "string" :
+        sum += array[i].length;
+        break;
+      case "number" :
+        sum += array[i];
+        break;
+      case "boolean" :
+          if (array[i]){
+            sum += 1;
+          }
+          break;
+      default:
+        throw new Error("Unsupported data type sir or ma'am");
+    }
+  }
+  return sum;
+}
 
 
 
