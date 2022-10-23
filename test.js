@@ -22,31 +22,124 @@ const matrix = [
   ];
   
   function greatestProduct(matrix) {
-    let adjacents = 4, xLimit = matrix[0].length, yLimit, line = "";
+    let adjacents = 4, xLimit, yLimit, line = "", product = 0, productAdj = 1;
     //Percorre a matriz na horizontal
+    xLimit = matrix[0].length
     for (let i = 0; i < xLimit; i++){
         yLimit = matrix[i].length;
         for (let j = 0; j + adjacents <= yLimit; j++) {
             line = "";
+            productAdj = 1;
             for (let k = 0; k < adjacents; k++){
                 line += `${matrix[i][k+j]}|`;
+                productAdj *= matrix[i][k+j];
+            }
+            if (productAdj > product) {
+              product = productAdj;
             }
             console.log(line);
+            // console.log(productAdj);
         }
     }
-    // console.log("===================");
+    console.log("===================");
     //Percorre a matriz na vertical
     yLimit = matrix[1].length
     for (let i = 0; i < yLimit; i++){
         xLimit = matrix[i].length;
         for (let j = 0; j + adjacents <= yLimit; j++) {
             line = "";
+            productAdj = 1;
             for (let k = 0; k < adjacents; k++){
                 line += `${matrix[k+j][i]}|`;
+                productAdj *= matrix[k+j][i];
             }
             console.log(line);
         }
+        if (productAdj > product) {
+          product = productAdj;
+        }
     }
+    return product;
   }
 
-  greatestProduct(matrix);
+  console.log(greatestProduct(matrix));
+
+  let numbers = [10,20,30,40,50,60];
+  let newNumbers = [];
+  numbers.forEach( el => { if(el > 40) {newNumbers.push(el)}});
+  console.log( newNumbers );
+
+  const places = [
+    {
+      title: "Awesome Suite 20' away from la Rambla",
+      price: 200,
+      type: "Private Room",
+      pool: true,
+      garage: false,
+    },
+    {
+      title: "Private apartment",
+      price: 190,
+      type: "Entire Place",
+      pool: true,
+      garage: true,
+    },
+    {
+      title: "Apartment with awesome views",
+      price: 400,
+      type: "Entire Place",
+      pool: false,
+      garage: false,
+    },
+    {
+      title: "Apartment in la Rambla",
+      price: 150,
+      type: "Private Room",
+      pool: false,
+      garage: true,
+    },
+    {
+      title: "Comfortable place in Barcelona´s center",
+      price: 390,
+      type: "Entire place",
+      pool: true,
+      garage: true,
+    },
+    {
+      title: "Room near Sagrada Familia",
+      price: 170,
+      type: "Private Room",
+      pool: false,
+      garage: false,
+    },
+    {
+      title: "Great house next to Camp Nou",
+      price: 140,
+      type: "Entire place",
+      pool: true,
+      garage: true,
+    },
+    {
+      title: "New apartment with 2 beds",
+      price: 2000,
+      type: "Entire place",
+      pool: false,
+      garage: true,
+    },
+    {
+      title: "Awesome Suite",
+      price: 230,
+      type: "Private Room",
+      pool: false,
+      garage: false,
+    },
+    {
+      title: "Apartment 10' from la Rambla",
+      price: 930,
+      type: "Entire place",
+      pool: true,
+      garage: true,
+    },
+  ];
+
+  console.log(places.map( el => el.title));
